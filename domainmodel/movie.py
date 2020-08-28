@@ -81,7 +81,7 @@ class Movie:
 
     @runtime_minutes.setter
     def runtime_minutes(self, rm):
-        if rm < 0:
+        if rm < 1:
             raise ValueError("Only positive numbers can be assigned to runtime minutes")
         else:
             self.__runtime_minutes = rm
@@ -96,14 +96,14 @@ class Movie:
                 other.__release_year == self.__release_year)
 
     def __lt__(self, other):
-        return (("None" if self.__title == None else self.__title,
-                 "None" if self.__release_year == None else self.__release_year)
+        return (("None" if self.__title is None else self.__title,
+                 "None" if self.__release_year is None else self.__release_year)
                 <
-                ("None" if other.__title == None else other.__title,
-                 "None" if other.__release_year == None else other.__release_year))
+                ("None" if other.__title is None else other.__title,
+                 "None" if other.__release_year is None else other.__release_year))
 
     def __hash__(self):
-        return hash(self.__title + self.__release_year)
+        return hash(self.__title + str(self.__release_year))
 
     def add_actor(self, a):
         if not isinstance(a, Actor):
