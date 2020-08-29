@@ -45,15 +45,21 @@ class User:
         return other.__user_name == self.__user_name
 
     def __lt__(self, other):
-        return ("None" if self.__user_name is None else self.__user_name <
-                "None" if other.__user_name is None else other.__user_name)
+        return (("None" if self.__user_name is None else self.__user_name)
+                <
+                ("None" if other.__user_name is None else other.__user_name))
 
     def __hash__(self):
         return hash(self.__user_name)
 
     def watch_movie(self, movie):
-        pass
+        if not isinstance(movie, Movie):
+            raise Exception("Only Movies can be added")
+        self.__watched_movies.append(movie)
+        self.__time_spent_watching_movies_minutes += movie.runtime_minutes
 
     def add_review(self, review):
-        pass
+        if not isinstance(review, Review):
+            raise Exception("Only Reviews can be added")
+        self.__reviews.append(review)
 
