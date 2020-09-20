@@ -2,6 +2,7 @@ from datetime import datetime
 
 from domainmodel.movie import Movie
 
+
 class Review:
 
     def __init__(self, movie: Movie, txt: str, rating: int):
